@@ -55,14 +55,14 @@ Hi,
 
 I came across the {title} position listed on {source} and wanted to reach out.
 
-I’m a Data Engineer with 7+ years of experience building scalable pipelines and data platforms:
+I'm a Data Engineer with 7+ years of experience building scalable pipelines and data platforms:
   • Apache Spark, Databricks, Delta Lake, Apache Kafka
   • AWS (S3, Glue, EMR, Redshift), Azure (Data Factory, Synapse, ADLS), GCP (BigQuery, Dataflow)
   • Python, SQL, dbt, Apache Airflow, Terraform
   • Snowflake, Lakehouse architecture, real-time streaming
 
-I’m actively looking for C2C / Corp-to-Corp contract engagements. My resume is attached — please
-let me know if there’s a fit or if you’d like to schedule a quick call.
+I'm actively looking for C2C / Corp-to-Corp contract engagements. My resume is attached — please
+let me know if there's a fit or if you'd like to schedule a quick call.
 
 Best regards,
 {sender_name}
@@ -174,7 +174,7 @@ def send_emails(dry_run: bool = False, limit: int = 50) -> None:
                 print(f"  [{i:>3}/{len(to_send)}] ✓ {job['email']}  ({job['title']})")
                 _save_sent_log(sent_log)
                 if i < len(to_send):
-                    time.sleep(2)  # stay within Gmail sending-rate limits
+                    time.sleep(2)
             except Exception as exc:
                 print(f"  [{i:>3}/{len(to_send)}] ✗ {job['email']}: {exc}")
 

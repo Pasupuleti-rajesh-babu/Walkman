@@ -236,7 +236,6 @@ def scrape_jobboard_wp(base: str, source: str,
     1. GET the search results page (initial server-rendered jobs + nonce)
     2. POST to admin-ajax.php for additional pages using the extracted nonce
     """
-    # URL patterns the plugin may use for keyword search
     candidate_urls = [
         f"{base}/?search_keywords={search.replace(' ', '+')}",
         f"{base}/jobs/?search_keywords={search.replace(' ', '+')}",
@@ -281,7 +280,6 @@ def scrape_nvoids() -> list[dict]:
     base = "https://nvoids.com"
     jobs = scrape_jobboard_wp(base, "nVoids")
     if not jobs:
-        # Fallback: generic scraping with email regex when plugin not detected
         jobs = _scrape_generic(
             base, "nVoids",
             search_paths=[
