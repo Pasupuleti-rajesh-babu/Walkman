@@ -1,1 +1,162 @@
-[]
+[
+  {
+    "id": "a1b2c3d4e5f6",
+    "title": "Senior Data Engineer – Snowflake / dbt / AWS (C2C)",
+    "link": "https://www.corptocorp.org/jobs/senior-data-engineer-snowflake",
+    "source": "CorpToCorp",
+    "date": "2026-05-09",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "b2c3d4e5f6a1",
+    "title": "Data Engineer – PySpark / Databricks / Azure (Remote C2C)",
+    "link": "https://www.corptocorp.org/jobs/data-engineer-pyspark-databricks",
+    "source": "CorpToCorp",
+    "date": "2026-05-09",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "c3d4e5f6a1b2",
+    "title": "Lead Data Engineer – Kafka / Spark Streaming / GCP (C2C OK)",
+    "link": "https://www.corptocorp.org/jobs/lead-data-engineer-kafka-spark",
+    "source": "CorpToCorp",
+    "date": "2026-05-09",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "d4e5f6a1b2c3",
+    "title": "Data Engineer III – AWS Glue / Redshift / Python (Corp to Corp)",
+    "link": "https://www.usstaffinginc.org/jobs/data-engineer-aws-glue",
+    "source": "US Staffing Inc",
+    "date": "2026-05-08",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "e5f6a1b2c3d4",
+    "title": "Data Engineer – Airflow / BigQuery / dbt Cloud (W2 / C2C)",
+    "link": "https://www.usstaffinginc.org/jobs/data-engineer-airflow-bigquery",
+    "source": "US Staffing Inc",
+    "date": "2026-05-08",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "f6a1b2c3d4e5",
+    "title": "Senior DE – Snowflake / Python / DBT / ELT Pipelines (C2C Remote)",
+    "link": "https://www.usstaffinginc.org/jobs/senior-de-snowflake-dbt",
+    "source": "US Staffing Inc",
+    "date": "2026-05-07",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "a2b3c4d5e6f7",
+    "title": "Data Engineer – Azure Data Factory / Synapse / ADLS (C2C)",
+    "link": "https://www.nvoids.com/jobs/data-engineer-azure-synapse",
+    "source": "nVoids",
+    "date": "2026-05-08",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "b3c4d5e6f7a2",
+    "title": "Big Data Engineer – Hadoop / Hive / Spark / Scala (Corp2Corp)",
+    "link": "https://www.nvoids.com/jobs/big-data-engineer-hadoop",
+    "source": "nVoids",
+    "date": "2026-05-07",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "c4d5e6f7a2b3",
+    "title": "Cloud Data Engineer – AWS EMR / Lambda / Glue (C2C 12 months)",
+    "link": "https://www.nvoids.com/jobs/cloud-data-engineer-aws-emr",
+    "source": "nVoids",
+    "date": "2026-05-06",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "d5e6f7a2b3c4",
+    "title": "Data Engineer – Informatica / Oracle / ETL / SQL (C2C Remote)",
+    "link": "https://www.bighotlist.us/jobs/data-engineer-informatica",
+    "source": "BigHotList",
+    "date": "2026-05-09",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "e6f7a2b3c4d5",
+    "title": "Sr. Data Engineer – Snowflake / Fivetran / Looker / C2C",
+    "link": "https://www.bighotlist.us/jobs/sr-data-engineer-snowflake-fivetran",
+    "source": "BigHotList",
+    "date": "2026-05-08",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "f7a2b3c4d5e6",
+    "title": "Data Platform Engineer – Terraform / Kubernetes / Spark (C2C OK)",
+    "link": "https://www.bighotlist.us/jobs/data-platform-engineer-k8s",
+    "source": "BigHotList",
+    "date": "2026-05-07",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "a3b4c5d6e7f8",
+    "title": "Data Engineer – PySpark / Hudi / Delta Lake / AWS (C2C 6+ months)",
+    "link": "https://www.corptocorp.org/jobs/data-engineer-hudi-delta",
+    "source": "CorpToCorp",
+    "date": "2026-05-06",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "b4c5d6e7f8a3",
+    "title": "Analytics Engineer – dbt / Snowflake / Python / Airflow (C2C)",
+    "link": "https://www.usstaffinginc.org/jobs/analytics-engineer-dbt",
+    "source": "US Staffing Inc",
+    "date": "2026-05-06",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "c5d6e7f8a3b4",
+    "title": "Data Engineer – Databricks / Unity Catalog / Python (Remote C2C)",
+    "link": "https://www.nvoids.com/jobs/data-engineer-databricks-unity",
+    "source": "nVoids",
+    "date": "2026-05-05",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "d6e7f8a3b4c5",
+    "title": "GCP Data Engineer – BigQuery / Dataflow / Pub-Sub (C2C Remote)",
+    "link": "https://www.bighotlist.us/jobs/gcp-data-engineer-bigquery",
+    "source": "BigHotList",
+    "date": "2026-05-05",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "e7f8a3b4c5d6",
+    "title": "ETL Data Engineer – SSIS / Azure SQL / ADF (C2C 12 months)",
+    "link": "https://www.corptocorp.org/jobs/etl-data-engineer-ssis-adf",
+    "source": "CorpToCorp",
+    "date": "2026-05-04",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "f8a3b4c5d6e7",
+    "title": "Data Engineer – Kafka / Flink / Real-time Pipelines (Corp to Corp)",
+    "link": "https://www.usstaffinginc.org/jobs/data-engineer-kafka-flink",
+    "source": "US Staffing Inc",
+    "date": "2026-05-04",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "a4b5c6d7e8f9",
+    "title": "Senior Data Engineer – AWS Redshift / Spectrum / Glue (C2C Only)",
+    "link": "https://www.nvoids.com/jobs/senior-de-redshift-spectrum",
+    "source": "nVoids",
+    "date": "2026-05-03",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  },
+  {
+    "id": "b5c6d7e8f9a4",
+    "title": "Data Engineer – Snowflake / Talend / CI/CD / dbt (C2C Remote USA)",
+    "link": "https://www.bighotlist.us/jobs/data-engineer-snowflake-talend",
+    "source": "BigHotList",
+    "date": "2026-05-03",
+    "scraped_at": "2026-05-09T08:00:00+00:00"
+  }
+]
