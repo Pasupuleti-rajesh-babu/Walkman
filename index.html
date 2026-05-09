@@ -426,7 +426,8 @@
 
   async function loadJobs() {
     try {
-      const res = await fetch('data/jobs.json?t=' + Date.now());
+      const RAW = 'https://raw.githubusercontent.com/pasupuleti-rajesh-babu/Walkman/main/data/jobs.json';
+      const res = await fetch(RAW + '?t=' + Date.now());
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
       allJobs = Array.isArray(data) ? data : (data.jobs || []);
