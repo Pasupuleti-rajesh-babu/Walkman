@@ -209,6 +209,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 13px; font-weight: 800; letter-spacing: -.5px; margin-top: 2px;
     }
+    .src-dc { background: #0c1a2e;          color: #38bdf8;        border: 1px solid #0e3a5c; }
     .src-ct { background: var(--blue-bg);   color: var(--blue);   border: 1px solid #1e3a6e; }
     .src-us { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
     .src-nv { background: var(--purple-bg); color: var(--purple); border: 1px solid #4a1272; }
@@ -359,6 +360,7 @@
   const SKILLS = ['Snowflake','PySpark','Databricks','AWS','Azure','GCP','dbt','Airflow','Kafka','Spark','Python','Scala','SQL','Redshift','BigQuery','Hadoop','Hive','Terraform','Kubernetes','Delta Lake','Hudi','Flink','Glue','Informatica','Talend','SSIS','ADF','Synapse','Fivetran','Looker','EMR','Lambda','Dataflow','Unity Catalog'];
   const QUICK_CHIPS = ['Snowflake','PySpark','Databricks','AWS','Azure','GCP','dbt','Airflow','Kafka','Spark'];
   const SRC_META = {
+    'Dice.com':       { cls:'src-dc', abbr:'DC' },
     'CorpToCorp':     { cls:'src-ct', abbr:'CT' },
     'US Staffing Inc':{ cls:'src-us', abbr:'US' },
     'nVoids':         { cls:'src-nv', abbr:'NV' },

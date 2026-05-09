@@ -1,162 +1,162 @@
 [
   {
-    "id": "dice001",
-    "title": "Senior Data Engineer – Snowflake / dbt / AWS (C2C)",
-    "link": "https://www.dice.com/jobs/q-Senior+Data+Engineer+Snowflake+dbt+AWS-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-09",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice002",
-    "title": "Data Engineer – PySpark / Databricks / Azure (Remote C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+PySpark+Databricks+Azure-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-09",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice003",
-    "title": "Lead Data Engineer – Kafka / Spark Streaming / GCP (C2C OK)",
-    "link": "https://www.dice.com/jobs/q-Lead+Data+Engineer+Kafka+Spark+GCP-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-09",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice004",
-    "title": "Data Engineer – AWS Glue / Redshift / Python (Corp to Corp)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+AWS+Glue+Redshift+Python-l-USA?filters.employmentType=CONTRACTS",
+    "id": "d5f6433b7b52",
+    "title": "Data Engineer AWS / PySpark / Glue",
+    "link": "https://www.dice.com/job-detail/d5f6433b-7b52-42a1-8893-f5f3414ccdb7",
     "source": "Dice.com",
     "date": "2026-05-08",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice005",
-    "title": "Data Engineer – Airflow / BigQuery / dbt Cloud (C2C Remote)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Airflow+BigQuery+dbt-l-USA?filters.employmentType=CONTRACTS",
+    "id": "55929042d3b9",
+    "title": "Google Cloud Platform AI/Data Engineer – Healthcare (Contract)",
+    "link": "https://www.dice.com/job-detail/55929042-d3b9-4ce5-823f-d9b40ff491be",
     "source": "Dice.com",
     "date": "2026-05-08",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice006",
-    "title": "Senior Data Engineer – Snowflake / Python / ELT Pipelines (C2C Remote)",
-    "link": "https://www.dice.com/jobs/q-Senior+Data+Engineer+Snowflake+Python+ELT-l-USA?filters.employmentType=CONTRACTS",
+    "id": "650dee3edbac",
+    "title": "Data Engineer Databricks SME – Remote Contract",
+    "link": "https://www.dice.com/job-detail/650dee3e-dbac-425c-a23c-0358222e6595",
     "source": "Dice.com",
     "date": "2026-05-07",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice007",
-    "title": "Data Engineer – Azure Data Factory / Synapse / ADLS (C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Azure+Data+Factory+Synapse-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-08",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice008",
-    "title": "Big Data Engineer – Hadoop / Hive / Spark / Scala (C2C)",
-    "link": "https://www.dice.com/jobs/q-Big+Data+Engineer+Hadoop+Hive+Spark+Scala-l-USA?filters.employmentType=CONTRACTS",
+    "id": "738de0e3c974",
+    "title": "Senior dbt Cloud / Databricks Architect – Azure Remote Contract",
+    "link": "https://www.dice.com/job-detail/738de0e3-c974-4945-8549-f8f3c18b57ad",
     "source": "Dice.com",
     "date": "2026-05-07",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice009",
-    "title": "Cloud Data Engineer – AWS EMR / Lambda / Glue (C2C 12 months)",
-    "link": "https://www.dice.com/jobs/q-Cloud+Data+Engineer+AWS+EMR+Lambda+Glue-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-06",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice010",
-    "title": "Data Engineer – Informatica / Oracle / ETL / SQL (C2C Remote)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Informatica+Oracle+ETL+SQL-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-09",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice011",
-    "title": "Sr. Data Engineer – Snowflake / Fivetran / Looker (C2C)",
-    "link": "https://www.dice.com/jobs/q-Senior+Data+Engineer+Snowflake+Fivetran+Looker-l-USA?filters.employmentType=CONTRACTS",
-    "source": "Dice.com",
-    "date": "2026-05-08",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
-  },
-  {
-    "id": "dice012",
-    "title": "Data Platform Engineer – Terraform / Kubernetes / Spark (C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Platform+Engineer+Terraform+Kubernetes+Spark-l-USA?filters.employmentType=CONTRACTS",
+    "id": "76f57c1a6df6",
+    "title": "Sr Data Engineer – Microsoft Fabric / Databricks / PySpark (C2C OK)",
+    "link": "https://www.dice.com/job-detail/76f57c1a-6df6-466b-8efd-d919c1f75d6c",
     "source": "Dice.com",
     "date": "2026-05-07",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice013",
-    "title": "Data Engineer – PySpark / Hudi / Delta Lake / AWS (C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+PySpark+Hudi+Delta+Lake+AWS-l-USA?filters.employmentType=CONTRACTS",
+    "id": "4b2a1038d6c9",
+    "title": "Sr. Data Engineer – Python / Snowflake / AWS – 100% Remote",
+    "link": "https://www.dice.com/job-detail/4b2a1038-d6c9-4840-a150-36b7b2cd416c",
+    "source": "Dice.com",
+    "date": "2026-05-07",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "6c196d9b2b0e",
+    "title": "Databricks Developer – Delta Lake / PySpark / Azure (C2C)",
+    "link": "https://www.dice.com/job-detail/6c196d9b-2b0e-4c87-a477-15f7eddb0153",
+    "source": "Dice.com",
+    "date": "2026-05-07",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "d9bcda1be11a",
+    "title": "Sr. AWS Data Engineer – Snowflake / Glue / Lambda / PySpark – Remote",
+    "link": "https://www.dice.com/job-detail/d9bcda1b-e11a-4d20-bc6d-6dedc3b88647",
     "source": "Dice.com",
     "date": "2026-05-06",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice014",
-    "title": "Analytics Engineer – dbt / Snowflake / Python / Airflow (C2C)",
-    "link": "https://www.dice.com/jobs/q-Analytics+Engineer+dbt+Snowflake+Python+Airflow-l-USA?filters.employmentType=CONTRACTS",
+    "id": "62df73266cc7",
+    "title": "Data Engineer – Spark / ETL / Cloud Pipelines – Remote Contract",
+    "link": "https://www.dice.com/job-detail/62df7326-6cc7-4925-952a-f7ff6c530bbf",
     "source": "Dice.com",
     "date": "2026-05-06",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice015",
-    "title": "Data Engineer – Databricks / Unity Catalog / Python (Remote C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Databricks+Unity+Catalog+Python-l-USA?filters.employmentType=CONTRACTS",
+    "id": "263cfca0e087",
+    "title": "Azure Data Engineer – Databricks / ADF / Synapse (12-Month Contract)",
+    "link": "https://www.dice.com/job-detail/263cfca0-e087-442f-9b54-b33868d4c8fa",
+    "source": "Dice.com",
+    "date": "2026-05-06",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "f7534d9a0843",
+    "title": "Data Engineer – Google Cloud Platform / BigQuery / Dataflow – Remote",
+    "link": "https://www.dice.com/job-detail/f7534d9a-0843-4f3c-8127-d89fcfb495b2",
+    "source": "Dice.com",
+    "date": "2026-05-06",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "ed56fe37f503",
+    "title": "Senior Data Engineer – Python / AWS / Snowflake / Airflow – Remote Contract",
+    "link": "https://www.dice.com/job-detail/ed56fe37-f503-452b-b5f3-773948c05cd1",
     "source": "Dice.com",
     "date": "2026-05-05",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice016",
-    "title": "GCP Data Engineer – BigQuery / Dataflow / Pub-Sub (C2C Remote)",
-    "link": "https://www.dice.com/jobs/q-GCP+Data+Engineer+BigQuery+Dataflow-l-USA?filters.employmentType=CONTRACTS",
+    "id": "97615de3dab1",
+    "title": "Senior Big Data Engineer – PySpark / Kafka / Airflow / BigQuery – Remote",
+    "link": "https://www.dice.com/job-detail/97615de3-dab1-411c-8f52-08a165a8be17",
     "source": "Dice.com",
     "date": "2026-05-05",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice017",
-    "title": "ETL Data Engineer – SSIS / Azure SQL / ADF (C2C 12 months)",
-    "link": "https://www.dice.com/jobs/q-ETL+Data+Engineer+SSIS+Azure+SQL+ADF-l-USA?filters.employmentType=CONTRACTS",
+    "id": "268bea0b65a5",
+    "title": "Senior Azure Data Engineer – ADF / Databricks / Delta Lake / Unity Catalog",
+    "link": "https://www.dice.com/job-detail/268bea0b-65a5-44d3-8a44-4b2cd08a8f14",
     "source": "Dice.com",
-    "date": "2026-05-04",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "date": "2026-04-30",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice018",
-    "title": "Data Engineer – Kafka / Flink / Real-time Pipelines (C2C)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Kafka+Flink+Real-time+Pipelines-l-USA?filters.employmentType=CONTRACTS",
+    "id": "f70c50a646fc",
+    "title": "AWS Data Engineer – Remote Contract (W2/C2C)",
+    "link": "https://www.dice.com/job-detail/f70c50a6-46fc-4189-9446-00c57487e84c",
     "source": "Dice.com",
-    "date": "2026-05-04",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "date": "2026-04-29",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice019",
-    "title": "Senior Data Engineer – AWS Redshift / Spectrum / Glue (C2C)",
-    "link": "https://www.dice.com/jobs/q-Senior+Data+Engineer+AWS+Redshift+Spectrum+Glue-l-USA?filters.employmentType=CONTRACTS",
+    "id": "3f7093c27a92",
+    "title": "Senior Data Engineer – ETL/ELT Pipelines / Kafka / SQL",
+    "link": "https://www.dice.com/job-detail/3f7093c2-7a92-4d30-9a93-52d4eabe0eb2",
     "source": "Dice.com",
-    "date": "2026-05-03",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "date": "2026-04-27",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   },
   {
-    "id": "dice020",
-    "title": "Data Engineer – Snowflake / Talend / CI/CD / dbt (C2C Remote USA)",
-    "link": "https://www.dice.com/jobs/q-Data+Engineer+Snowflake+Talend+dbt-l-USA?filters.employmentType=CONTRACTS",
+    "id": "3c3ae5b53181",
+    "title": "Cloud Data Engineer – Remote Contract (Data Pipelines / Cloud Platform)",
+    "link": "https://www.dice.com/job-detail/3c3ae5b5-3181-46bc-849d-85cae0a9bc4f",
     "source": "Dice.com",
-    "date": "2026-05-03",
-    "scraped_at": "2026-05-09T08:00:00+00:00"
+    "date": "2026-04-23",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "f597b2a7a0c7",
+    "title": "Databricks Data Engineer – AWS / Delta Lake / PySpark – Remote",
+    "link": "https://www.dice.com/job-detail/f597b2a7-a0c7-4801-a606-40f139855938",
+    "source": "Dice.com",
+    "date": "2026-04-10",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "752082b3ea48",
+    "title": "Senior AWS Data Engineer – Redshift / S3 / QuickSight (C2C / Contract)",
+    "link": "https://www.dice.com/job-detail/752082b3-ea48-4ec6-af84-c7abc8530f84",
+    "source": "Dice.com",
+    "date": "2026-04-09",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
+  },
+  {
+    "id": "81cfe38ce8e9",
+    "title": "Senior Data Engineer – Contract NY – $87/HR C2C / $77/HR W2",
+    "link": "https://www.dice.com/job-detail/81cfe38c-e8e9-4853-b3d1-69ca6716b449",
+    "source": "Dice.com",
+    "date": "2026-04-08",
+    "scraped_at": "2026-05-09T12:00:00+00:00"
   }
 ]
