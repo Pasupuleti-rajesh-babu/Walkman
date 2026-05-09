@@ -3,464 +3,500 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C2C Data Engineer Jobs</title>
+  <title>C2C Data Engineer Jobs — USA</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --border: #2e3250;
-      --accent: #4f6ef7;
-      --accent-hover: #6b85ff;
-      --text: #e4e6f1;
-      --text-muted: #8b90b0;
-      --green: #34d399;
-      --yellow: #fbbf24;
-      --red: #f87171;
-      --radius: 12px;
-      --shadow: 0 4px 24px rgba(0,0,0,.35);
+      --bg:        #09090b;
+      --bg2:       #111113;
+      --surface:   #18181b;
+      --surface2:  #1f1f23;
+      --surface3:  #27272a;
+      --border:    #2e2e33;
+      --border2:   #3f3f46;
+      --accent:    #6366f1;
+      --accent2:   #818cf8;
+      --accent-bg: #1e1b4b;
+      --text:      #fafafa;
+      --text2:     #a1a1aa;
+      --text3:     #71717a;
+      --green:     #22c55e;
+      --green-bg:  #052e16;
+      --green-bd:  #14532d;
+      --amber:     #f59e0b;
+      --amber-bg:  #1c1300;
+      --blue:      #3b82f6;
+      --blue-bg:   #0c1a3a;
+      --purple:    #a855f7;
+      --purple-bg: #1a0533;
+      --orange:    #f97316;
+      --orange-bg: #1c0a00;
+      --red:       #ef4444;
+      --radius-sm: 6px;
+      --radius:    10px;
+      --radius-lg: 16px;
+      --shadow:    0 0 0 1px var(--border), 0 8px 32px rgba(0,0,0,.4);
+      --transition: .15s cubic-bezier(.4,0,.2,1);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
       min-height: 100vh;
     }
 
-    /* ── Header ── */
-    header {
-      background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(9,9,11,.88);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 24px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+      padding: 0 24px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
     }
-    .logo { display: flex; align-items: center; gap: 12px; }
-    .logo-icon {
-      width: 42px; height: 42px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #7c3aed);
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-icon {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
+      font-size: 15px; font-weight: 700; color: #fff;
     }
-    header h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -.3px; }
-    header p { font-size: .8rem; color: var(--text-muted); margin-top: 2px; }
-    .last-updated { font-size: .75rem; color: var(--text-muted); text-align: right; }
+    .brand-name { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -.3px; }
+    .brand-sub  { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .live-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--green-bg); border: 1px solid var(--green-bd);
+      border-radius: 20px; padding: 4px 10px;
+      font-size: 11px; font-weight: 600; color: var(--green);
+    }
+    .live-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    .last-sync { font-size: 11px; color: var(--text3); }
 
-    /* ── Main ── */
-    main { max-width: 1300px; margin: 0 auto; padding: 28px 20px; }
+    .hero {
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 0;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; }
+    .hero h1 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800; letter-spacing: -.5px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--text2); margin-top: 4px; font-size: 13px; }
+    .stat-row {
+      display: flex; gap: 0; margin-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .stat {
+      flex: 1; padding: 16px 20px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-size: 28px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+    .stat-val.accent { color: var(--accent2); }
+    .stat-val.green  { color: var(--green); }
+    .stat-val.amber  { color: var(--amber); }
+    .stat-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-top: 4px; }
+    @media (max-width:500px) { .stat { padding: 12px 14px; } .stat-val { font-size: 22px; } }
 
-    /* ── Stats bar ── */
-    .stats-bar {
-      display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+    .filter-bar {
+      position: sticky; top: 56px; z-index: 90;
+      background: rgba(9,9,11,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
     }
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 22px;
-      flex: 1; min-width: 140px;
+    .filter-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
     }
-    .stat-card .label { font-size: .72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
-    .stat-card .value { font-size: 1.6rem; font-weight: 700; margin-top: 4px; }
-    .stat-card .value.blue { color: var(--accent); }
-    .stat-card .value.green { color: var(--green); }
-    .stat-card .value.yellow { color: var(--yellow); }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-icon {
+      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+      color: var(--text3); pointer-events: none; width: 15px; height: 15px;
+    }
+    .search-input {
+      width: 100%; background: var(--surface2);
+      border: 1px solid var(--border2); border-radius: var(--radius);
+      color: var(--text); font-size: 13px;
+      padding: 8px 12px 8px 34px;
+      outline: none; transition: border-color var(--transition);
+    }
+    .search-input::placeholder { color: var(--text3); }
+    .search-input:focus { border-color: var(--accent); background: var(--surface3); }
+    .filter-select {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius); color: var(--text);
+      font-size: 13px; padding: 8px 28px 8px 10px;
+      outline: none; cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 8px center;
+      transition: border-color var(--transition); min-width: 130px;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+    .filter-select option { background: #1f1f23; }
+    .btn-reset {
+      background: transparent; border: 1px solid var(--border2);
+      border-radius: var(--radius); color: var(--text3);
+      font-size: 12px; padding: 8px 14px; cursor: pointer;
+      transition: all var(--transition); white-space: nowrap;
+    }
+    .btn-reset:hover { border-color: var(--accent); color: var(--accent2); }
 
-    /* ── Filters ── */
-    .filters {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px 20px;
-      display: flex; gap: 12px; flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 24px;
+    .chip-row {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 6px; flex-wrap: wrap;
+      padding: 8px 24px 12px;
+      border-bottom: 1px solid var(--border);
     }
-    .search-wrap { position: relative; flex: 1; min-width: 220px; }
-    .search-wrap svg {
-      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-      width: 16px; height: 16px; color: var(--text-muted); pointer-events: none;
+    .chip {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 20px; color: var(--text2);
+      font-size: 11px; font-weight: 500; padding: 3px 10px;
+      cursor: pointer; transition: all var(--transition); white-space: nowrap;
     }
-    input[type="text"], select {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: .875rem;
-      padding: 9px 12px;
-      outline: none;
-      transition: border-color .2s;
-    }
-    input[type="text"] { padding-left: 36px; width: 100%; }
-    input[type="text"]:focus, select:focus { border-color: var(--accent); }
-    select { min-width: 160px; cursor: pointer; }
-    select option { background: var(--surface2); }
+    .chip:hover  { border-color: var(--accent); color: var(--accent2); background: var(--accent-bg); }
+    .chip.active { border-color: var(--accent); color: var(--accent2); background: var(--accent-bg); }
 
-    .btn-clear {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: .8rem;
-      padding: 9px 16px;
-      transition: all .2s;
-      white-space: nowrap;
-    }
-    .btn-clear:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── Results info ── */
-    .results-info {
+    .layout { max-width: 1100px; margin: 0 auto; padding: 20px 24px 60px; }
+    .results-row {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 16px; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 14px; gap: 8px; flex-wrap: wrap;
     }
-    .results-info span { font-size: .875rem; color: var(--text-muted); }
-    .results-info strong { color: var(--text); }
+    .results-label { font-size: 12px; color: var(--text3); }
+    .results-label strong { color: var(--text2); }
+    .sort-wrap { display: flex; align-items: center; gap: 6px; }
+    .sort-label { font-size: 11px; color: var(--text3); }
+    .sort-select {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text2);
+      font-size: 11px; padding: 4px 20px 4px 8px; cursor: pointer;
+      outline: none; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 6px center;
+    }
+    .sort-select option { background: #1f1f23; }
 
-    /* ── Job Grid ── */
-    #job-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 16px;
-    }
+    #job-list { display: flex; flex-direction: column; gap: 10px; }
 
     .job-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: flex; flex-direction: column;
-      gap: 12px;
-      transition: border-color .2s, transform .15s, box-shadow .2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+      cursor: pointer; text-decoration: none;
     }
     .job-card:hover {
       border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
+      box-shadow: 0 0 0 1px var(--accent), 0 12px 40px rgba(99,102,241,.12);
+      transform: translateY(-1px);
     }
+    .src-avatar {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; letter-spacing: -.5px; margin-top: 2px;
+    }
+    .src-ct { background: var(--blue-bg);   color: var(--blue);   border: 1px solid #1e3a6e; }
+    .src-us { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+    .src-nv { background: var(--purple-bg); color: var(--purple); border: 1px solid #4a1272; }
+    .src-bh { background: var(--orange-bg); color: var(--orange); border: 1px solid #7c2d00; }
 
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-    .job-title {
-      font-size: .975rem; font-weight: 600; line-height: 1.4;
-      color: var(--text);
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+    .card-body { flex: 1; min-width: 0; }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .job-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.4; letter-spacing: -.2px; }
     .badge-new {
-      background: #1e3a2f; color: var(--green);
-      border: 1px solid #2d5a45;
-      border-radius: 6px; font-size: .68rem; font-weight: 600;
-      padding: 3px 8px; white-space: nowrap; flex-shrink: 0;
+      flex-shrink: 0;
+      background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bd);
+      border-radius: var(--radius-sm); font-size: 10px; font-weight: 700;
+      padding: 2px 7px; letter-spacing: .3px; margin-top: 2px;
     }
-
-    .card-meta { display: flex; flex-wrap: wrap; gap: 8px; }
-    .meta-pill {
-      display: flex; align-items: center; gap: 5px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: .75rem; color: var(--text-muted);
-      padding: 4px 10px;
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .skill-tag {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); font-size: 11px; font-weight: 500;
+      color: var(--text2); padding: 2px 7px;
     }
-    .meta-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
-    .meta-pill.source { color: var(--accent); border-color: #2a3670; background: #131830; }
-
+    .card-meta { display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text3); }
+    .meta-item svg { width: 12px; height: 12px; }
+    .badge-c2c {
+      background: var(--accent-bg); color: var(--accent2); border: 1px solid #3730a3;
+      border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; padding: 2px 7px; letter-spacing: .3px;
+    }
+    .badge-remote {
+      background: var(--surface2); color: var(--text2); border: 1px solid var(--border2);
+      border-radius: var(--radius-sm); font-size: 10px; font-weight: 500; padding: 2px 7px;
+    }
+    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; margin-top: 2px; }
     .btn-view {
-      display: block; text-align: center; text-decoration: none;
-      background: linear-gradient(135deg, var(--accent), #6b5bf7);
-      border-radius: 8px;
-      color: #fff; font-size: .825rem; font-weight: 600;
-      padding: 9px;
-      transition: opacity .2s, transform .1s;
-      margin-top: auto;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--accent); border-radius: var(--radius);
+      color: #fff; font-size: 12px; font-weight: 600;
+      padding: 7px 14px; text-decoration: none;
+      transition: opacity var(--transition), background var(--transition); white-space: nowrap;
     }
-    .btn-view:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-view:hover { background: var(--accent2); }
+    .btn-view svg { width: 12px; height: 12px; }
 
-    /* ── Empty state ── */
-    #empty-state {
-      display: none; text-align: center; padding: 80px 20px;
-      grid-column: 1 / -1;
+    .skeleton-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 18px 20px; display: flex; gap: 14px;
     }
-    #empty-state .icon { font-size: 3rem; margin-bottom: 16px; opacity: .4; }
-    #empty-state h3 { color: var(--text-muted); font-size: 1.1rem; }
-    #empty-state p { color: var(--text-muted); font-size: .85rem; margin-top: 6px; }
+    .sk { background: var(--surface3); border-radius: 6px; animation: shimmer 1.4s ease-in-out infinite; }
+    @keyframes shimmer { 0%,100%{opacity:.5} 50%{opacity:1} }
+    .sk-avatar { width:40px; height:40px; border-radius:10px; flex-shrink:0; }
+    .sk-body { flex:1; display:flex; flex-direction:column; gap:8px; }
+    .sk-line { height:12px; } .sk-title{width:70%;} .sk-mid{width:40%;} .sk-short{width:25%;height:10px;}
 
-    /* ── Loading ── */
-    #loading {
-      text-align: center; padding: 80px 20px;
-      grid-column: 1 / -1; color: var(--text-muted);
-    }
-    .spinner {
-      width: 36px; height: 36px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-      margin: 0 auto 16px;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .empty-state { text-align: center; padding: 80px 20px; color: var(--text3); }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: .5; }
+    .empty-state h3 { font-size: 16px; color: var(--text2); margin-bottom: 6px; }
+    .empty-state p { font-size: 13px; }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center; padding: 32px 20px;
-      color: var(--text-muted); font-size: .78rem;
-      border-top: 1px solid var(--border); margin-top: 48px;
-    }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text3); font-size: 12px; }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--accent2); }
 
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      header { padding: 16px; }
-      header h1 { font-size: 1.1rem; }
-      main { padding: 16px 12px; }
-      #job-grid { grid-template-columns: 1fr; }
-      .stat-card { min-width: 110px; padding: 12px 14px; }
-      .stat-card .value { font-size: 1.3rem; }
+    @media (max-width: 640px) {
+      .topbar { padding: 0 16px; } .hero { padding: 20px 16px 0; }
+      .filter-bar { padding: 10px 16px; } .chip-row { padding: 8px 16px 10px; }
+      .layout { padding: 16px 16px 48px; } .card-right { display: none; }
+      .stat-row { overflow-x: auto; } .stat { min-width: 100px; } .last-sync { display: none; }
+    }
+    @media (max-width: 480px) {
+      .src-avatar { width: 34px; height: 34px; font-size: 11px; } .job-title { font-size: 14px; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <div class="logo-icon">⚡</div>
+<nav class="topbar">
+  <a class="brand" href="#">
+    <div class="brand-icon">C2</div>
     <div>
-      <h1>C2C Data Engineer Jobs</h1>
-      <p>Corp-to-Corp · USA · Auto-updated daily</p>
+      <div class="brand-name">C2C Jobs</div>
+      <div class="brand-sub">Data Engineering · USA</div>
     </div>
+  </a>
+  <div class="topbar-right">
+    <span class="live-badge"><span class="live-dot"></span>Live</span>
+    <span class="last-sync">Synced <span id="sync-time">—</span></span>
   </div>
-  <div class="last-updated">
-    Last updated: <span id="last-updated-time">—</span>
-  </div>
-</header>
+</nav>
 
-<main>
-  <!-- Stats -->
-  <div class="stats-bar">
-    <div class="stat-card">
-      <div class="label">Total Jobs</div>
-      <div class="value blue" id="stat-total">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">Today</div>
-      <div class="value green" id="stat-today">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">This Week</div>
-      <div class="value yellow" id="stat-week">—</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">Sources</div>
-      <div class="value" id="stat-sources">—</div>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Corp-to-Corp Data Engineer Jobs</h1>
+    <p>Aggregated daily from top US C2C staffing networks · Remote-first · No W2</p>
+    <div class="stat-row">
+      <div class="stat"><div class="stat-val accent" id="s-total">—</div><div class="stat-label">Total Listings</div></div>
+      <div class="stat"><div class="stat-val green" id="s-today">—</div><div class="stat-label">Posted Today</div></div>
+      <div class="stat"><div class="stat-val amber" id="s-week">—</div><div class="stat-label">This Week</div></div>
+      <div class="stat"><div class="stat-val" id="s-sources">—</div><div class="stat-label">Sources</div></div>
     </div>
   </div>
+</section>
 
-  <!-- Filters -->
-  <div class="filters">
+<div class="filter-bar">
+  <div class="filter-inner">
     <div class="search-wrap">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
       </svg>
-      <input type="text" id="search-input" placeholder="Search by keyword: Snowflake, PySpark, AWS…" />
+      <input class="search-input" id="q" type="text" placeholder="Search roles, skills, tech stack…" autocomplete="off" />
     </div>
-
-    <select id="source-filter">
-      <option value="">All Sources</option>
-    </select>
-
-    <select id="date-filter">
-      <option value="">All Dates</option>
+    <select class="filter-select" id="f-source"><option value="">All Sources</option></select>
+    <select class="filter-select" id="f-date">
+      <option value="">Any time</option>
       <option value="1">Today</option>
-      <option value="7">Last 7 Days</option>
-      <option value="30">Last 30 Days</option>
+      <option value="7">Last 7 days</option>
+      <option value="30">Last 30 days</option>
     </select>
-
-    <button class="btn-clear" id="btn-clear">Clear Filters</button>
+    <button class="btn-reset" id="btn-reset">Reset</button>
   </div>
+</div>
 
-  <!-- Results count -->
-  <div class="results-info">
-    <span>Showing <strong id="showing-count">0</strong> jobs</span>
-  </div>
+<div class="chip-row" id="chip-row"></div>
 
-  <!-- Grid -->
-  <div id="job-grid">
-    <div id="loading">
-      <div class="spinner"></div>
-      <p>Loading jobs…</p>
+<main class="layout">
+  <div class="results-row">
+    <span class="results-label">Showing <strong id="r-count">—</strong> jobs</span>
+    <div class="sort-wrap">
+      <span class="sort-label">Sort:</span>
+      <select class="sort-select" id="f-sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+      </select>
     </div>
+  </div>
+  <div id="job-list">
+    <div class="skeleton-card"><div class="sk sk-avatar"></div><div class="sk-body"><div class="sk sk-line sk-title"></div><div class="sk sk-line sk-mid"></div><div class="sk sk-line sk-short"></div></div></div>
+    <div class="skeleton-card"><div class="sk sk-avatar"></div><div class="sk-body"><div class="sk sk-line sk-title" style="width:55%"></div><div class="sk sk-line sk-mid" style="width:35%"></div><div class="sk sk-line sk-short"></div></div></div>
+    <div class="skeleton-card"><div class="sk sk-avatar"></div><div class="sk-body"><div class="sk sk-line sk-title" style="width:65%"></div><div class="sk sk-line sk-mid" style="width:42%"></div><div class="sk sk-line sk-short"></div></div></div>
   </div>
 </main>
 
 <footer>
-  Data refreshed automatically every day at 8 AM UTC via GitHub Actions &nbsp;·&nbsp;
-  Sources: CorpToCorp, US Staffing Inc, nVoids, BigHotList
+  Auto-refreshed daily at 08:00 UTC via GitHub Actions &nbsp;·&nbsp;
+  <a href="https://github.com/pasupuleti-rajesh-babu/Walkman" target="_blank" rel="noopener">View on GitHub</a>
 </footer>
 
 <script>
-  let allJobs = [];
+  const DATA_URL = 'https://raw.githubusercontent.com/pasupuleti-rajesh-babu/Walkman/main/data/jobs.json';
+  const SKILLS = ['Snowflake','PySpark','Databricks','AWS','Azure','GCP','dbt','Airflow','Kafka','Spark','Python','Scala','SQL','Redshift','BigQuery','Hadoop','Hive','Terraform','Kubernetes','Delta Lake','Hudi','Flink','Glue','Informatica','Talend','SSIS','ADF','Synapse','Fivetran','Looker','EMR','Lambda','Dataflow','Unity Catalog'];
+  const QUICK_CHIPS = ['Snowflake','PySpark','Databricks','AWS','Azure','GCP','dbt','Airflow','Kafka','Spark'];
+  const SRC_META = {
+    'CorpToCorp':     { cls:'src-ct', abbr:'CT' },
+    'US Staffing Inc':{ cls:'src-us', abbr:'US' },
+    'nVoids':         { cls:'src-nv', abbr:'NV' },
+    'BigHotList':     { cls:'src-bh', abbr:'BH' },
+  };
 
-  const grid = document.getElementById('job-grid');
-  const searchInput = document.getElementById('search-input');
-  const sourceFilter = document.getElementById('source-filter');
-  const dateFilter = document.getElementById('date-filter');
-  const showingCount = document.getElementById('showing-count');
+  let allJobs = [], activeChip = '';
+  const listEl = document.getElementById('job-list');
+  const qEl    = document.getElementById('q');
+  const srcEl  = document.getElementById('f-source');
+  const dateEl = document.getElementById('f-date');
+  const sortEl = document.getElementById('f-sort');
+  const countEl= document.getElementById('r-count');
+  const chipRow= document.getElementById('chip-row');
 
-  function daysAgo(dateStr) {
-    if (!dateStr) return Infinity;
-    const d = new Date(dateStr);
-    if (isNaN(d)) return Infinity;
-    return Math.floor((Date.now() - d.getTime()) / 86400000);
+  function daysAgo(ds) {
+    if (!ds) return Infinity;
+    const d = new Date(ds);
+    return isNaN(d) ? Infinity : Math.floor((Date.now()-d)/86400000);
   }
-
-  function formatDate(dateStr) {
-    if (!dateStr) return 'Unknown date';
-    const d = new Date(dateStr);
-    if (isNaN(d)) return dateStr;
-    const ago = daysAgo(dateStr);
-    if (ago === 0) return 'Today';
-    if (ago === 1) return 'Yesterday';
-    if (ago < 7) return `${ago} days ago`;
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  function fmtDate(ds) {
+    const ago = daysAgo(ds);
+    if (ago===0) return 'Today';
+    if (ago===1) return 'Yesterday';
+    if (ago<7)   return ago+'d ago';
+    const d = new Date(ds);
+    return isNaN(d) ? ds : d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   }
-
-  function isNew(dateStr) {
-    return daysAgo(dateStr) <= 2;
-  }
+  function extractSkills(t) { return SKILLS.filter(s=>t.toLowerCase().includes(s.toLowerCase())); }
+  function srcMeta(s) { return SRC_META[s]||{cls:'src-ct',abbr:(s||'?').substring(0,2).toUpperCase()}; }
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
   function renderJobs(jobs) {
-    showingCount.textContent = jobs.length;
-
-    const existing = grid.querySelectorAll('.job-card, #empty-state');
-    existing.forEach(el => el.remove());
-
-    if (jobs.length === 0) {
-      const empty = document.createElement('div');
-      empty.id = 'empty-state';
-      empty.style.display = 'block';
-      empty.innerHTML = `
-        <div class="icon">🔍</div>
-        <h3>No jobs found</h3>
-        <p>Try adjusting your filters or search terms.</p>
-      `;
-      grid.appendChild(empty);
+    countEl.textContent = jobs.length;
+    if (!jobs.length) {
+      listEl.innerHTML = '<div class="empty-state"><div class="empty-icon">&#128269;</div><h3>No jobs match your filters</h3><p>Try different keywords or reset your filters.</p></div>';
       return;
     }
-
+    listEl.innerHTML = '';
     const frag = document.createDocumentFragment();
     jobs.forEach(job => {
-      const card = document.createElement('div');
+      const sm   = srcMeta(job.source);
+      const tags = extractSkills(job.title||'');
+      const card = document.createElement('a');
       card.className = 'job-card';
+      card.href = job.link||'#'; card.target='_blank'; card.rel='noopener noreferrer';
       card.innerHTML = `
-        <div class="card-header">
-          <div class="job-title">${escHtml(job.title || 'Untitled Job')}</div>
-          ${isNew(job.date) ? '<span class="badge-new">NEW</span>' : ''}
+        <div class="src-avatar ${esc(sm.cls)}">${esc(sm.abbr)}</div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="job-title">${esc(job.title)}</div>
+            ${daysAgo(job.date)<=1?'<span class="badge-new">NEW</span>':''}
+          </div>
+          ${tags.length?'<div class="skill-tags">'+tags.map(t=>'<span class="skill-tag">'+esc(t)+'</span>').join('')+'</div>':''}
+          <div class="card-meta">
+            <span class="badge-c2c">C2C</span>
+            <span class="badge-remote">Remote</span>
+            <span class="meta-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>${esc(job.source)}</span>
+            <span class="meta-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>${esc(fmtDate(job.date))}</span>
+          </div>
         </div>
-        <div class="card-meta">
-          <span class="meta-pill source">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            ${escHtml(job.source || 'Unknown')}
-          </span>
-          <span class="meta-pill">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-            </svg>
-            ${escHtml(formatDate(job.date))}
-          </span>
-        </div>
-        <a class="btn-view" href="${escHtml(job.link || '#')}" target="_blank" rel="noopener noreferrer">
-          View Job →
-        </a>
-      `;
+        <div class="card-right">
+          <a class="btn-view" href="${esc(job.link||'#')}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">View Job <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>`;
       frag.appendChild(card);
     });
-    grid.appendChild(frag);
+    listEl.appendChild(frag);
   }
 
   function applyFilters() {
-    const kw = searchInput.value.trim().toLowerCase();
-    const src = sourceFilter.value;
-    const days = parseInt(dateFilter.value) || 0;
-
-    const filtered = allJobs.filter(job => {
-      if (kw && !((job.title || '').toLowerCase().includes(kw))) return false;
-      if (src && job.source !== src) return false;
-      if (days && daysAgo(job.date) > days) return false;
+    const q    = qEl.value.trim().toLowerCase();
+    const src  = srcEl.value;
+    const days = parseInt(dateEl.value)||0;
+    const chip = activeChip.toLowerCase();
+    const asc  = sortEl.value==='oldest';
+    let list = allJobs.filter(job => {
+      const t = (job.title||'').toLowerCase();
+      if (q && !t.includes(q)) return false;
+      if (src && job.source!==src) return false;
+      if (days && daysAgo(job.date)>days) return false;
+      if (chip && !t.includes(chip)) return false;
       return true;
-    });
-
-    renderJobs(filtered);
+    }).slice().sort((a,b)=>{ const da=new Date(a.date||0),db=new Date(b.date||0); return asc?da-db:db-da; });
+    renderJobs(list);
   }
 
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function populateSourceFilter(jobs) {
-    const sources = [...new Set(jobs.map(j => j.source).filter(Boolean))].sort();
-    sources.forEach(s => {
-      const opt = document.createElement('option');
-      opt.value = s;
-      opt.textContent = s;
-      sourceFilter.appendChild(opt);
+  function buildChips() {
+    QUICK_CHIPS.forEach(skill => {
+      const c = document.createElement('button');
+      c.className='chip'; c.textContent=skill;
+      c.addEventListener('click',()=>{
+        if (activeChip===skill) { activeChip=''; c.classList.remove('active'); }
+        else { chipRow.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); activeChip=skill; c.classList.add('active'); }
+        applyFilters();
+      });
+      chipRow.appendChild(c);
     });
   }
 
-  function updateStats(jobs) {
-    document.getElementById('stat-total').textContent = jobs.length;
-    document.getElementById('stat-today').textContent = jobs.filter(j => daysAgo(j.date) === 0).length;
-    document.getElementById('stat-week').textContent = jobs.filter(j => daysAgo(j.date) <= 7).length;
-    document.getElementById('stat-sources').textContent = new Set(jobs.map(j => j.source).filter(Boolean)).size;
+  function setStats(jobs) {
+    document.getElementById('s-total').textContent   = jobs.length;
+    document.getElementById('s-today').textContent   = jobs.filter(j=>daysAgo(j.date)===0).length;
+    document.getElementById('s-week').textContent    = jobs.filter(j=>daysAgo(j.date)<=7).length;
+    document.getElementById('s-sources').textContent = new Set(jobs.map(j=>j.source).filter(Boolean)).size;
   }
 
-  async function loadJobs() {
+  async function load() {
     try {
-      const RAW = 'https://raw.githubusercontent.com/pasupuleti-rajesh-babu/Walkman/main/data/jobs.json';
-      const res = await fetch(RAW + '?t=' + Date.now());
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const res  = await fetch(DATA_URL+'?t='+Date.now());
+      if (!res.ok) throw new Error('HTTP '+res.status);
       const data = await res.json();
-      allJobs = Array.isArray(data) ? data : (data.jobs || []);
-
-      allJobs.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
-
-      document.getElementById('loading').remove();
-      populateSourceFilter(allJobs);
-      updateStats(allJobs);
-
-      const ts = allJobs.find(j => j.scraped_at);
-      document.getElementById('last-updated-time').textContent =
-        ts ? new Date(ts.scraped_at).toLocaleString() : new Date().toLocaleDateString();
-
-      renderJobs(allJobs);
-    } catch (err) {
-      document.getElementById('loading').innerHTML =
-        `<p style="color:var(--text-muted)">⚠ Could not load jobs.json.<br><small>${err.message}</small></p>`;
+      allJobs = Array.isArray(data)?data:(data.jobs||[]);
+      allJobs.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));
+      setStats(allJobs);
+      const sources = [...new Set(allJobs.map(j=>j.source).filter(Boolean))].sort();
+      sources.forEach(s=>{ const o=document.createElement('option'); o.value=s; o.textContent=s; srcEl.appendChild(o); });
+      buildChips();
+      const ts = allJobs.find(j=>j.scraped_at);
+      document.getElementById('sync-time').textContent = ts
+        ? new Date(ts.scraped_at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})
+        : 'today';
+      applyFilters();
+    } catch(e) {
+      listEl.innerHTML = '<div class="empty-state"><div class="empty-icon">&#9888;&#65039;</div><h3>Could not load jobs</h3><p>'+esc(e.message)+'</p></div>';
     }
   }
 
-  searchInput.addEventListener('input', applyFilters);
-  sourceFilter.addEventListener('change', applyFilters);
-  dateFilter.addEventListener('change', applyFilters);
-
-  document.getElementById('btn-clear').addEventListener('click', () => {
-    searchInput.value = '';
-    sourceFilter.value = '';
-    dateFilter.value = '';
+  qEl.addEventListener('input',applyFilters);
+  srcEl.addEventListener('change',applyFilters);
+  dateEl.addEventListener('change',applyFilters);
+  sortEl.addEventListener('change',applyFilters);
+  document.getElementById('btn-reset').addEventListener('click',()=>{
+    qEl.value=''; srcEl.value=''; dateEl.value=''; sortEl.value='newest'; activeChip='';
+    chipRow.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
     applyFilters();
   });
 
-  loadJobs();
+  load();
 </script>
 </body>
 </html>
