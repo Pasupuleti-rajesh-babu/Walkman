@@ -76,6 +76,8 @@ def extract_rate(text: str) -> str:
 def parse_date_string(raw: str) -> str:
     """Best-effort parse of common date strings → YYYY-MM-DD."""
     raw = clean_text(raw)
+    # Strip WordPress JobBoard WP prefixes like "Posted April 2, 2026"
+    raw = re.sub(r"^(?:posted|updated|expires?|closing on)\s+", "", raw, flags=re.IGNORECASE)
     for fmt in ("%B %d, %Y", "%b %d, %Y", "%m/%d/%Y", "%Y-%m-%d", "%d-%b-%Y"):
         try:
             return datetime.strptime(raw, fmt).strftime("%Y-%m-%d")
@@ -119,7 +121,7 @@ def make_job(title: str, link: str, source: str, date: str, **kw) -> dict:
 #     <div class="jb-row-info">
 #       <div class="company"><span title="">recruiter@email.com</span></div>
 #       <div class="location"><a href="...">City, State</a></div>
-#       <div class="date">Posted April 2, 2026</div>  (or <time datetime="...">)
+#       <div class="date" title="Posted">Posted April 2, 2026</div>
 #     </div>
 #   </div>
 
@@ -165,7 +167,7 @@ def _jb_parse_rows(soup: BeautifulSoup, source: str, base: str) -> list[dict]:
         loc_el = row.select_one(".location a, .jb-job-location a")
         location = clean_text(loc_el.get_text()) if loc_el else ""
 
-        # Date — prefer machine-readable datetime attribute
+        # Date — prefer machine-readable datetime attribute; fallback to .date text
         time_el = row.select_one("time[datetime]")
         if time_el:
             dt_raw = time_el.get("datetime", "")[:10]
