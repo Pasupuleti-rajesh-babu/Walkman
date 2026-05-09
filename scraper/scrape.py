@@ -1,7 +1,8 @@
 """
 C2C Data Engineer job scraper.
-Sources: corptocorp.org, usstaffinginc.org, nvoids.com, bighotlist.us
-Output: ../data/jobs.json
+Primary:  Dice.com search API (contract jobs)
+Fallback: corptocorp.org, usstaffinginc.org, nvoids.com, bighotlist.us
+Output:   ../data/jobs.json
 """
 
 import json
@@ -14,6 +15,8 @@ import requests
 from bs4 import BeautifulSoup
 
 JOBS_FILE = Path(__file__).parent.parent / "data" / "jobs.json"
+TODAY     = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+SCRAPED_AT = datetime.now(timezone.utc).isoformat()
 
 HEADERS = {
     "User-Agent": (
@@ -21,312 +24,251 @@ HEADERS = {
         "AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/124.0.0.0 Safari/537.36"
     ),
+    "Accept": "application/json, text/html,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, br",
     "Connection": "keep-alive",
-    "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1",
-    "Cache-Control": "max-age=0",
 }
 
-TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-SCRAPED_AT = datetime.now(timezone.utc).isoformat()
+KEYWORDS = [
+    "data engineer c2c",
+    "data engineer corp to corp",
+    "data engineer contract",
+]
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────────────────
 
-def get_page(url: str, retries: int = 3) -> BeautifulSoup | None:
-    session = requests.Session()
-    session.headers.update(HEADERS)
-    for attempt in range(retries):
-        try:
-            # Prime the session with a homepage visit to get cookies
-            if attempt == 0:
-                base = "/".join(url.split("/")[:3])
-                try:
-                    session.get(base, timeout=10)
-                    time.sleep(0.5)
-                except Exception:
-                    pass
-            resp = session.get(url, timeout=25, allow_redirects=True)
-            if resp.status_code == 403:
-                print(f"  [warn] 403 on {url} — site blocks scrapers")
-                return None
-            resp.raise_for_status()
-            return BeautifulSoup(resp.text, "html.parser")
-        except Exception as exc:
-            print(f"  [warn] attempt {attempt+1}/{retries} for {url}: {exc}")
-            time.sleep(2 ** attempt)
-    return None
-
-
 def job_id(title: str, link: str) -> str:
-    raw = f"{title.strip().lower()}|{link.strip()}"
-    return hashlib.md5(raw.encode()).hexdigest()[:12]
+    return hashlib.md5(f"{title.strip().lower()}|{link.strip()}".encode()).hexdigest()[:12]
 
 
-def clean_text(text: str) -> str:
+def clean(text: str) -> str:
     return re.sub(r"\s+", " ", text or "").strip()
 
 
-def parse_date_string(raw: str) -> str:
-    """Best-effort parse of common date strings → YYYY-MM-DD."""
-    raw = clean_text(raw)
-    for fmt in ("%B %d, %Y", "%b %d, %Y", "%m/%d/%Y", "%Y-%m-%d", "%d-%b-%Y"):
+def parse_date(raw: str) -> str:
+    raw = clean(raw)
+    for fmt in ("%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ",
+                "%B %d, %Y", "%b %d, %Y", "%m/%d/%Y", "%Y-%m-%d"):
         try:
             return datetime.strptime(raw, fmt).strftime("%Y-%m-%d")
         except ValueError:
             pass
-    # relative: "2 days ago", "today", "yesterday"
     lower = raw.lower()
     if "today" in lower or "just now" in lower or "hour" in lower:
         return TODAY
     m = re.search(r"(\d+)\s+day", lower)
     if m:
         from datetime import timedelta
-        days = int(m.group(1))
-        return (datetime.now(timezone.utc) - timedelta(days=days)).strftime("%Y-%m-%d")
-    return TODAY  # fallback to today
+        return (datetime.now(timezone.utc) - timedelta(days=int(m.group(1)))).strftime("%Y-%m-%d")
+    return TODAY
 
 
 def make_job(title: str, link: str, source: str, date: str) -> dict:
     return {
-        "id": job_id(title, link),
-        "title": clean_text(title),
-        "link": link.strip(),
-        "source": source,
-        "date": date,
+        "id":         job_id(title, link),
+        "title":      clean(title),
+        "link":       link.strip(),
+        "source":     source,
+        "date":       date,
         "scraped_at": SCRAPED_AT,
     }
 
 
-# ── Scrapers ───────────────────────────────────────────────────────────────────────────
+def get_page(url: str, retries: int = 3, json_mode: bool = False):
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    for attempt in range(retries):
+        try:
+            resp = session.get(url, timeout=25, allow_redirects=True)
+            if resp.status_code == 403:
+                print(f"  [403] {url} — blocked")
+                return None
+            resp.raise_for_status()
+            return resp.json() if json_mode else BeautifulSoup(resp.text, "html.parser")
+        except Exception as exc:
+            print(f"  [warn] attempt {attempt+1}/{retries}: {exc}")
+            time.sleep(2 ** attempt)
+    return None
+
+
+# ── Source 1: Dice.com API (primary — real links) ──────────────────────────────────────
+
+def scrape_dice() -> list[dict]:
+    """Dice.com contract Data Engineer jobs via their search API."""
+    jobs = []
+    seen = set()
+
+    for kw in KEYWORDS:
+        url = (
+            "https://job-search-api.svc.dhigroupinc.com/v1/dice/jobs/search"
+            f"?q={requests.utils.quote(kw)}"
+            "&countryCode=US&pageSize=50&language=en"
+            "&facets=employmentType&filters.employmentType=CONTRACTS"
+        )
+        print(f"  Dice API: {kw}")
+        data = get_page(url, json_mode=True)
+        if not data:
+            continue
+
+        for hit in data.get("data", []):
+            title = clean(hit.get("title", ""))
+            link  = hit.get("applyUrl") or hit.get("jobDetailUrl") or ""
+            if not title or not link or link in seen:
+                continue
+            seen.add(link)
+            raw_date = hit.get("postedDate") or hit.get("modifiedDate") or TODAY
+            date = parse_date(raw_date) if raw_date else TODAY
+            jobs.append(make_job(title, link, "Dice.com", date))
+
+        print(f"    → {len(jobs)} total so far")
+        time.sleep(1)
+
+    print(f"  Dice.com: {len(jobs)} jobs")
+    return jobs
+
+
+# ── Source 2: corptocorp.org ─────────────────────────────────────────────────────────────────────
 
 def scrape_corptocorp() -> list[dict]:
-    """corptocorp.org — Data Engineer C2C jobs"""
     jobs = []
     base = "https://www.corptocorp.org"
-    pages = [
-        f"{base}/data-engineer-c2c-jobs",
-        f"{base}/c2c-jobs/data-engineer",
-        f"{base}/corp-to-corp-jobs?q=data+engineer",
-    ]
-
-    for url in pages:
+    for url in [f"{base}/data-engineer-c2c-jobs", f"{base}/c2c-jobs/data-engineer"]:
         print(f"  Trying: {url}")
         soup = get_page(url)
         if not soup:
             continue
-
-        # Strategy 1: common job-listing class names
-        for sel in ["div.job-listing", "div.job-post", "li.job-item",
-                    "article.job", "div.job", "tr.job-row"]:
-            items = soup.select(sel)
-            if items:
-                print(f"    [{sel}] found {len(items)} items")
-                for item in items:
-                    a = item.find("a", href=True)
-                    if not a:
-                        continue
-                    title = clean_text(a.get_text())
-                    if not title or len(title) < 4:
-                        continue
-                    href = a["href"]
-                    if not href.startswith("http"):
-                        href = base + href
-                    date_el = item.find(class_=re.compile(r"date|time|posted", re.I))
-                    date = parse_date_string(date_el.get_text() if date_el else "")
-                    jobs.append(make_job(title, href, "CorpToCorp", date))
-                break
-
-        # Strategy 2: all links that look like job titles
-        if not jobs:
-            for a in soup.find_all("a", href=True, string=True):
-                text = clean_text(a.get_text())
-                if re.search(r"data\s+engineer|de\s+|snowflake|spark|databricks", text, re.I):
-                    href = a["href"]
-                    if not href.startswith("http"):
-                        href = base + href
-                    jobs.append(make_job(text, href, "CorpToCorp", TODAY))
-
+        for sel in ["div.job-listing", "div.job-post", "li.job-item", "article.job", "div.job"]:
+            for item in soup.select(sel):
+                a = item.find("a", href=True)
+                if not a:
+                    continue
+                title = clean(a.get_text())
+                if not title:
+                    continue
+                href = a["href"] if a["href"].startswith("http") else base + a["href"]
+                date_el = item.find(class_=re.compile(r"date|time|posted", re.I))
+                jobs.append(make_job(title, href, "CorpToCorp", parse_date(date_el.get_text() if date_el else "")))
         if jobs:
             break
-
     print(f"  CorpToCorp: {len(jobs)} jobs")
     return jobs
 
 
+# ── Source 3: usstaffinginc.org ────────────────────────────────────────────────────────────────────
+
 def scrape_usstaffinginc() -> list[dict]:
-    """usstaffinginc.org — Data Engineer jobs"""
     jobs = []
     base = "https://www.usstaffinginc.org"
-    urls = [
-        f"{base}/c2c-jobs/data-engineer",
-        f"{base}/jobs?q=data+engineer&type=c2c",
-        f"{base}/data-engineer-jobs",
-        base,
-    ]
-
-    for url in urls:
+    for url in [f"{base}/c2c-jobs/data-engineer", f"{base}/data-engineer-jobs", base]:
         print(f"  Trying: {url}")
         soup = get_page(url)
         if not soup:
             continue
-
-        for sel in ["div.job-listing", "div.job", "li.job", "article",
-                    "div.position", "table.jobs tr"]:
-            items = soup.select(sel)
-            if not items:
-                continue
-            print(f"    [{sel}] found {len(items)} items")
-            for item in items:
+        for sel in ["div.job-listing", "div.job", "li.job", "article", "div.position"]:
+            for item in soup.select(sel):
                 a = item.find("a", href=True)
                 if not a:
                     continue
-                title = clean_text(a.get_text())
-                if not title or len(title) < 4:
+                title = clean(a.get_text())
+                if not title:
                     continue
-                href = a["href"]
-                if not href.startswith("http"):
-                    href = base + href
+                href = a["href"] if a["href"].startswith("http") else base + a["href"]
                 date_el = item.find(class_=re.compile(r"date|time|posted", re.I))
-                date = parse_date_string(date_el.get_text() if date_el else "")
-                jobs.append(make_job(title, href, "US Staffing Inc", date))
-
+                jobs.append(make_job(title, href, "US Staffing Inc", parse_date(date_el.get_text() if date_el else "")))
         if jobs:
             break
-
     print(f"  US Staffing Inc: {len(jobs)} jobs")
     return jobs
 
 
+# ── Source 4: nvoids.com ───────────────────────────────────────────────────────────────────────
+
 def scrape_nvoids() -> list[dict]:
-    """nvoids.com — C2C tech jobs"""
     jobs = []
     base = "https://www.nvoids.com"
-    urls = [
-        f"{base}/jobs/data-engineer",
-        f"{base}/c2c-jobs?q=data+engineer",
-        f"{base}/?s=data+engineer",
-        base,
-    ]
-
-    for url in urls:
+    for url in [f"{base}/jobs/data-engineer", f"{base}/c2c-jobs?q=data+engineer", base]:
         print(f"  Trying: {url}")
         soup = get_page(url)
         if not soup:
             continue
-
-        for sel in ["div.job-listing", "div.job", "li.job-post",
-                    "article", "h2.job-title", "div.listing"]:
-            items = soup.select(sel)
-            if not items:
-                continue
-            print(f"    [{sel}] found {len(items)} items")
-            for item in items:
+        for sel in ["div.job-listing", "div.job", "li.job-post", "article", "div.listing"]:
+            for item in soup.select(sel):
                 a = item.find("a", href=True)
                 if not a:
                     continue
-                title = clean_text(a.get_text())
-                if not title or len(title) < 4:
+                title = clean(a.get_text())
+                if not title:
                     continue
-                href = a["href"]
-                if not href.startswith("http"):
-                    href = base + href
+                href = a["href"] if a["href"].startswith("http") else base + a["href"]
                 date_el = item.find(class_=re.compile(r"date|time|posted", re.I))
-                date = parse_date_string(date_el.get_text() if date_el else "")
-                jobs.append(make_job(title, href, "nVoids", date))
-
+                jobs.append(make_job(title, href, "nVoids", parse_date(date_el.get_text() if date_el else "")))
         if jobs:
             break
-
     print(f"  nVoids: {len(jobs)} jobs")
     return jobs
 
 
+# ── Source 5: bighotlist.us ────────────────────────────────────────────────────────────────────────
+
 def scrape_bighotlist() -> list[dict]:
-    """bighotlist.us — IT staffing / C2C jobs"""
     jobs = []
     base = "https://www.bighotlist.us"
-    urls = [
-        f"{base}/jobs/data-engineer",
-        f"{base}/c2c-jobs/data-engineer",
-        f"{base}/search?q=data+engineer",
-        base,
-    ]
-
-    for url in urls:
+    for url in [f"{base}/jobs/data-engineer", f"{base}/search?q=data+engineer", base]:
         print(f"  Trying: {url}")
         soup = get_page(url)
         if not soup:
             continue
-
-        for sel in ["div.job", "div.job-listing", "li.job",
-                    "article.job", "div.posting", "div.result"]:
-            items = soup.select(sel)
-            if not items:
-                continue
-            print(f"    [{sel}] found {len(items)} items")
-            for item in items:
+        for sel in ["div.job", "div.job-listing", "li.job", "article.job", "div.posting"]:
+            for item in soup.select(sel):
                 a = item.find("a", href=True)
                 if not a:
                     continue
-                title = clean_text(a.get_text())
-                if not title or len(title) < 4:
+                title = clean(a.get_text())
+                if not title:
                     continue
-                href = a["href"]
-                if not href.startswith("http"):
-                    href = base + href
+                href = a["href"] if a["href"].startswith("http") else base + a["href"]
                 date_el = item.find(class_=re.compile(r"date|time|posted", re.I))
-                date = parse_date_string(date_el.get_text() if date_el else "")
-                jobs.append(make_job(title, href, "BigHotList", date))
-
+                jobs.append(make_job(title, href, "BigHotList", parse_date(date_el.get_text() if date_el else "")))
         if jobs:
             break
-
     print(f"  BigHotList: {len(jobs)} jobs")
     return jobs
 
 
-# ── Deduplication ─────────────────────────────────────────────────────────────────────────────
+# ── Dedup ────────────────────────────────────────────────────────────────────────────
 
 def deduplicate(jobs: list[dict]) -> list[dict]:
-    seen_ids: set[str] = set()
-    seen_links: set[str] = set()
-    unique = []
+    seen_ids, seen_links, out = set(), set(), []
     for job in jobs:
-        key = job.get("id", "")
+        jid  = job.get("id", "")
         link = job.get("link", "").rstrip("/")
-        if key in seen_ids or link in seen_links:
+        if jid in seen_ids or (link and link in seen_links):
             continue
-        seen_ids.add(key)
+        seen_ids.add(jid)
         if link:
             seen_links.add(link)
-        unique.append(job)
-    return unique
+        out.append(job)
+    return out
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────────────
+# ── Main ────────────────────────────────────────────────────────────────────────────
 
 def main():
     print("=== C2C Data Engineer Job Scraper ===")
     print(f"Date: {TODAY}\n")
 
-    # Load existing jobs (preserve history)
     existing: list[dict] = []
     if JOBS_FILE.exists():
         try:
             existing = json.loads(JOBS_FILE.read_text())
-            print(f"Loaded {len(existing)} existing jobs from {JOBS_FILE}\n")
+            print(f"Loaded {len(existing)} existing jobs\n")
         except Exception as e:
-            print(f"[warn] Could not load existing jobs: {e}\n")
+            print(f"[warn] {e}\n")
 
-    # Scrape all sources
     scrapers = [
+        ("Dice.com",      scrape_dice),
         ("CorpToCorp",    scrape_corptocorp),
         ("US Staffing",   scrape_usstaffinginc),
         ("nVoids",        scrape_nvoids),
@@ -337,13 +279,11 @@ def main():
     for name, fn in scrapers:
         print(f"\n[{name}]")
         try:
-            result = fn()
-            new_jobs.extend(result)
+            new_jobs.extend(fn())
         except Exception as exc:
             print(f"  ERROR: {exc}")
-        time.sleep(1)  # polite delay between sources
+        time.sleep(1)
 
-    # Merge new + existing, newest first
     combined = new_jobs + existing
     combined.sort(key=lambda j: j.get("date", ""), reverse=True)
     deduped = deduplicate(combined)
@@ -354,7 +294,7 @@ def main():
 
     JOBS_FILE.parent.mkdir(parents=True, exist_ok=True)
     JOBS_FILE.write_text(json.dumps(deduped, indent=2, ensure_ascii=False))
-    print(f"  Saved to    : {JOBS_FILE}")
+    print(f"  Saved → {JOBS_FILE}")
 
 
 if __name__ == "__main__":
