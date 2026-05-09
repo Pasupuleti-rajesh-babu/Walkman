@@ -23,18 +23,39 @@ HEADERS = {
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
 }
 
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 SCRAPED_AT = datetime.now(timezone.utc).isoformat()
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Helpers ────────────────────────────────────────────────────────────────────────────
 
 def get_page(url: str, retries: int = 3) -> BeautifulSoup | None:
+    session = requests.Session()
+    session.headers.update(HEADERS)
     for attempt in range(retries):
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=20)
+            # Prime the session with a homepage visit to get cookies
+            if attempt == 0:
+                base = "/".join(url.split("/")[:3])
+                try:
+                    session.get(base, timeout=10)
+                    time.sleep(0.5)
+                except Exception:
+                    pass
+            resp = session.get(url, timeout=25, allow_redirects=True)
+            if resp.status_code == 403:
+                print(f"  [warn] 403 on {url} — site blocks scrapers")
+                return None
             resp.raise_for_status()
             return BeautifulSoup(resp.text, "html.parser")
         except Exception as exc:
@@ -83,7 +104,7 @@ def make_job(title: str, link: str, source: str, date: str) -> dict:
     }
 
 
-# ── Scrapers ─────────────────────────────────────────────────────────────────
+# ── Scrapers ───────────────────────────────────────────────────────────────────────────
 
 def scrape_corptocorp() -> list[dict]:
     """corptocorp.org — Data Engineer C2C jobs"""
@@ -271,7 +292,7 @@ def scrape_bighotlist() -> list[dict]:
     return jobs
 
 
-# ── Deduplication ─────────────────────────────────────────────────────────────
+# ── Deduplication ─────────────────────────────────────────────────────────────────────────────
 
 def deduplicate(jobs: list[dict]) -> list[dict]:
     seen_ids: set[str] = set()
@@ -289,7 +310,7 @@ def deduplicate(jobs: list[dict]) -> list[dict]:
     return unique
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Main ──────────────────────────────────────────────────────────────────────────────
 
 def main():
     print("=== C2C Data Engineer Job Scraper ===")
